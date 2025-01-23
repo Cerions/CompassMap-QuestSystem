@@ -5,7 +5,6 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Logging/LogMacros.h"
-#include "Gameplay/Interfaces/PlayerInterface.h"
 #include "CompassMapProjectCharacter.generated.h"
 
 class USpringArmComponent;
@@ -17,7 +16,7 @@ struct FInputActionValue;
 DECLARE_LOG_CATEGORY_EXTERN(LogTemplateCharacter, Log, All);
 
 UCLASS(config=Game)
-class ACompassMapProjectCharacter : public ACharacter, public IPlayerInterface
+class ACompassMapProjectCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
@@ -70,6 +69,5 @@ public:
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
 
-	UCameraComponent* GetActiveCamera() override;
 };
 

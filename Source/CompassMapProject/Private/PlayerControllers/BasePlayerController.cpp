@@ -4,9 +4,9 @@
 #include "PlayerControllers/BasePlayerController.h"
 #include "Kismet/GameplayStatics.h"
 #include "GameModes/GameplayGameMode.h"
-#include "CompassMapProject/CompassMapProjectCharacter.h"
 #include "FunctionLibraries/SingletonFunctionLibrary.h"
 #include "Managers/CMEventManager.h"
+#include "Gameplay/Characters/CMPlayer.h"
 
 void ABasePlayerController::BeginPlay()
 {
@@ -36,7 +36,7 @@ void ABasePlayerController::SpawnCharacter()
 		}
 	}
 
-	CharRef = GetWorld()->SpawnActor<ACompassMapProjectCharacter>(PlayerCharacterClass, CharPosition, SpawnInfo);
+	CharRef = GetWorld()->SpawnActor<ACMPlayer>(PlayerCharacterClass, CharPosition, SpawnInfo);
 	Possess(CharRef);
 
 	UCMEventManager* EM = USingletonFunctionLibrary::GetEventManager(GetWorld());

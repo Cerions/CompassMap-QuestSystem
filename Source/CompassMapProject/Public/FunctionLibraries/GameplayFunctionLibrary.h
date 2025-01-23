@@ -7,8 +7,8 @@
 #include "GameplayFunctionLibrary.generated.h"
 
 class UGameplayConstants;
-class ACompassMapProjectCharacter;
 class AMapManager;
+class ACMPlayer;
 
 /**
  * 
@@ -24,7 +24,7 @@ public:
 	static UGameplayConstants* GetGameplayConstants(UObject* WorldContext);
 
 	UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"))
-	static ACompassMapProjectCharacter* GetPlayerCharacter(UObject* WorldContext);
+	static ACMPlayer* GetPlayerCharacter(UObject* WorldContext);
 
 	UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"))
 	static AMapManager* GetMapManagerActor(UObject* WorldContext);

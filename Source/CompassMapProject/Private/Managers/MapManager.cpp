@@ -8,8 +8,6 @@
 #include "FunctionLibraries/SingletonFunctionLibrary.h"
 #include "Managers/CMEventManager.h"
 
-#pragma optimize("", off)
-
 AMapManager::AMapManager()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
@@ -75,15 +73,15 @@ void AMapManager::GetAllPOI(TArray<FPOIConfigRow>& POIConfig)
 	}
 }
 
-FVector AMapManager::GetPOILocation(FName POIID)
-{
-	if (DiscoveredPOIs.Contains(POIID))
-	{
-		return DiscoveredPOIs[POIID];
-	}
-
-	return FVector();
-}
+//FVector AMapManager::GetPOILocation(FName POIID)
+//{
+//	if (DiscoveredPOIs.Contains(POIID))
+//	{
+//		return DiscoveredPOIs[POIID];
+//	}
+//
+//	return FVector();
+//}
 
 void AMapManager::UpdateDynamicMarkers(TArray<UObjectStateComponent*> Markers)
 {

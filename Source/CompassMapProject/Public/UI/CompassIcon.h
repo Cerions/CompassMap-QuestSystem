@@ -48,7 +48,7 @@ public:
 	FPOIConfigRow MarkerData;
 
 	UFUNCTION()
-	void SetupWidget(AActor* ActorRef, const FPOIConfigRow& Row, const FVector& POILocation);
+	void SetupWidget(AActor* ActorRef, const FPOIConfigRow& Row/*, const FVector& POILocation*/);
 
 	UFUNCTION()
 	void UpdateMarker();

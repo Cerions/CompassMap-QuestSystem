@@ -8,7 +8,7 @@
 
 class UBaseHUD;
 class AGameplayGameMode;
-class ACompassMapProjectCharacter;
+class ACMPlayer;
 
 UCLASS()
 class COMPASSMAPPROJECT_API AHUDManager : public AActor
@@ -24,7 +24,7 @@ public:
 protected:
 
 	UFUNCTION()
-	void SetPlayerCharacter(ACompassMapProjectCharacter* PC);
+	void SetPlayerCharacter(ACMPlayer* PC);
 
 	virtual void BeginPlay() override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
@@ -39,6 +39,6 @@ protected:
 	AGameplayGameMode* GameplayGameMode {};
 
 	UPROPERTY()
-	ACompassMapProjectCharacter* PlayerCharacter {};
+	ACMPlayer* PlayerCharacter {};
 
 };

@@ -11,19 +11,24 @@ void UCMEventManager::InitManager(UCMGameInstance* InstanceOwner)
 	}
 }
 
-void UCMEventManager::OnCharacterRefSetEvent(ACompassMapProjectCharacter* PC)
+void UCMEventManager::OnCharacterRefSetEvent(ACMPlayer* PC)
 {
 	OnCharacterRefSet.Broadcast(PC);
 }
 
-void UCMEventManager::OnPOIsActivatedEvent()
-{
-	OnPOIsActivated.Broadcast();
-}
+//void UCMEventManager::OnPOIsActivatedEvent()
+//{
+//	OnPOIsActivated.Broadcast();
+//}
 
 void UCMEventManager::OnStepReachedEvent()
 {
 	OnStepReached.Broadcast();
+}
+
+void UCMEventManager::OnQuestUnlockEvent(const FName& QuestID)
+{
+	OnQuestUnlock.Broadcast(QuestID);
 }
 
 void UCMEventManager::OnObjectStateLoadedEvent(UObjectStateComponent* ObjectStateComp)
@@ -54,4 +59,9 @@ void UCMEventManager::OnNotifyQuestStartEvent(FName QuestID, int32 CurrentStepIn
 void UCMEventManager::OnEndStepEvent(const FName& QuestID, const int32 CurrentStepIndex)
 {
 	OnEndStep.Broadcast(QuestID, CurrentStepIndex);
+}
+
+void UCMEventManager::OnEnemyDeathEvent(APawn* Enemy)
+{
+	OnEnemyDeath.Broadcast(Enemy);
 }

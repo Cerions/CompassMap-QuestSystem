@@ -5,13 +5,11 @@
 #include "Kismet/GameplayStatics.h"
 #include "GameModes/GameplayGameMode.h"
 #include "PlayerControllers/BasePlayerController.h"
-#include "CompassMapProject/CompassMapProjectCharacter.h"
 #include "System/CMGameInstance.h"
 #include "Managers/MapManager.h"
 #include "Structures/GameplayConstants.h"
 #include "Gameplay/Components/ObjectStateComponent.h"
-
-#pragma optimize("", off)
+#include "Gameplay/Characters/CMPlayer.h"
 
 UGameplayConstants* UGameplayFunctionLibrary::GetGameplayConstants(UObject* WorldContext)
 {
@@ -24,7 +22,7 @@ UGameplayConstants* UGameplayFunctionLibrary::GetGameplayConstants(UObject* Worl
 	return nullptr;
 }
 
-ACompassMapProjectCharacter* UGameplayFunctionLibrary::GetPlayerCharacter(UObject* WorldContext)
+ACMPlayer* UGameplayFunctionLibrary::GetPlayerCharacter(UObject* WorldContext)
 {
 	AGameplayGameMode* GameplayGameMode = Cast<AGameplayGameMode>(UGameplayStatics::GetGameMode(WorldContext));
 	if (GameplayGameMode && GameplayGameMode->PlayerRef)
@@ -49,10 +47,10 @@ AMapManager* UGameplayFunctionLibrary::GetMapManagerActor(UObject* WorldContext)
 
 void UGameplayFunctionLibrary::AddPOI(FName NewPOI, FVector POILocation, UObject* WorldContext)
 {
-	if (AMapManager* MapManager = GetMapManagerActor(WorldContext))
+	/*if (AMapManager* MapManager = GetMapManagerActor(WorldContext))
 	{
 		MapManager->AddToDiscoveredPOIs(NewPOI, POILocation);
-	}
+	}*/
 }
 
 void UGameplayFunctionLibrary::RemovePOI(FName NewPOI, UObject* WorldContext)

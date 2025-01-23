@@ -13,13 +13,15 @@ class COMPASSMAPPROJECT_API AQuestManager : public AActor
 {
 	GENERATED_BODY()
 	
-public:	
+public:
+
+	AQuestManager();
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Design")
 	FName StartingQuest = "Q01";
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Design")
-	TSoftObjectPtr<UDataTable> QuestTable = nullptr;
+	TObjectPtr<UDataTable> QuestTable = nullptr;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Design")
 	TSoftClassPtr<UQuestBase> QuestClass;
@@ -36,8 +38,24 @@ public:
 	UFUNCTION()
 	void HandleStepEnd(UQuestBase* CurrentQuest);
 
+	UFUNCTION()
+	void HandleQuestEnd(UQuestBase* CurrentQuest);
+
+	void Tick(float DeltaTime) override;
+
 protected:
 	
 	virtual void BeginPlay() override;
+
+private:
+
+	UPROPERTY()
+	UQuestBase* ActualInProgressQuest {};
+
+	UFUNCTION()
+	void UnlockQuest(FName QuestToUnlock);
+
+	UFUNCTION()
+	void GoToNextQuest(FName NextQuestID);
 
 };

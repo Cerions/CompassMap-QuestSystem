@@ -92,11 +92,6 @@ void ACompassMapProjectCharacter::SetupPlayerInputComponent(UInputComponent* Pla
 	}
 }
 
-UCameraComponent* ACompassMapProjectCharacter::GetActiveCamera()
-{
-	return FollowCamera;
-}
-
 void ACompassMapProjectCharacter::Move(const FInputActionValue& Value)
 {
 	// input is a Vector2D

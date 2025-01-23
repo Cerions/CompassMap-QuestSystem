@@ -11,8 +11,6 @@
 #include "Gameplay/Components/ObjectStateComponent.h"
 #include "Gameplay/QuestSystem/QuestBase.h"
 
-#pragma optimize("", off)
-
 void UStepBase::InitStep()
 {
 	IsStepActive = false;
@@ -57,6 +55,11 @@ void UStepBase::UpdateStep(float DeltaTime)
 void UStepBase::CheckIsStepComplete()
 {
 
+}
+
+TArray<FStepTargetInfo> UStepBase::GetStepTargetsData()
+{
+	return TArray<FStepTargetInfo>{};
 }
 
 void UStepBase::EndStep()
@@ -185,4 +188,23 @@ void UStepBase::HideQuestTarget(UObjectStateComponent* ObjectStateComponent)
 void UStepBase::RemoveQuestTarget(UObjectStateComponent* ObjectStateComponent)
 {
 
+}
+
+// Verificare se serve davvero
+void UStepBase::RemoveQuestTargetByType(TSubclassOf<AActor> TargetType)
+{
+	if (QuestManagerRef->GetWorld())
+	{
+		for (int32 i = RegisteredTargets.Num() - 1; i >= 0; i--)
+		{
+			if (RegisteredTargets[i])
+			{
+				AActor* Owner = RegisteredTargets[i]->GetOwner();
+				if (Owner && Owner->GetClass() == TargetType)
+				{
+					RemoveQuestTarget(RegisteredTargets[i]);
+				}
+			}
+		}
+	}
 }

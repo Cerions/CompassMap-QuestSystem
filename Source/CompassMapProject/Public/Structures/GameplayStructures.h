@@ -7,6 +7,7 @@
 
 class UStepBase;
 class UObjectStateComponent;
+class UInputMappingContext;
 
 /**
  * 
@@ -182,6 +183,12 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<UStepBase*> Steps = {};
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FName QuestToUnlock = {};
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FName NextQuestID = {};
 };
 
 USTRUCT(BlueprintType)
@@ -238,4 +245,50 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	float AreaSize = 0.f;
+};
+
+USTRUCT(BlueprintType)
+struct COMPASSMAPPROJECT_API FStepTargetInfo
+{
+	GENERATED_USTRUCT_BODY()
+
+	FStepTargetInfo()
+	{
+	}
+
+	FStepTargetInfo(FName _TargetID, TSubclassOf<AActor> _TargetType, int32 _Quantity)
+	{
+		TargetID = _TargetID;
+		TargetType = _TargetType;
+		Quantity = _Quantity;
+	}
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FName TargetID = NAME_None;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<AActor> TargetType {};
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	int32 Quantity = 0;
+};
+
+USTRUCT(BlueprintType)
+struct FPlayerMappableInputConfigByPlatform
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UInputMappingContext> MappingContext;
+
+	UPROPERTY(EditAnywhere)
+	int32 Priority = 0;
+
+	UPROPERTY(EditAnywhere)
+	bool bActiveOnGamepad = false;
+
+	UPROPERTY(EditAnywhere)
+	bool bActiveOnKeyboard = false;
 };

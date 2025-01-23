@@ -4,8 +4,13 @@
 #include "Managers/QuestManager.h"
 #include "Structures/GameplayStructures.h"
 #include "Gameplay/QuestSystem/QuestBase.h"
+#include "FunctionLibraries/SingletonFunctionLibrary.h"
+#include "Managers/CMEventManager.h"
 
-#pragma optimize("", off)
+AQuestManager::AQuestManager()
+{
+	PrimaryActorTick.bCanEverTick = true;
+}
 
 void AQuestManager::CreateAndStartQuest(FName QuestID)
 {
@@ -19,6 +24,7 @@ void AQuestManager::CreateAndStartQuest(FName QuestID)
 			{
 				NewQuest->InitQuest();
 				NewQuest->StartQuest();
+				ActualInProgressQuest = NewQuest;
 			}
 		}
 	}
@@ -54,6 +60,26 @@ void AQuestManager::HandleStepEnd(UQuestBase* CurrentQuest)
 		{
 			GoToNextStep(CurrentQuest);
 		}
+		else if (NextStatus == EQuestStatus::Ending)
+		{
+			HandleQuestEnd(CurrentQuest);
+		}
+	}
+}
+
+void AQuestManager::HandleQuestEnd(UQuestBase* CurrentQuest)
+{
+	CurrentQuest->UninitQuest();
+
+	ActualInProgressQuest = nullptr;
+
+	if (CurrentQuest->QuestData->QuestToUnlock != "")
+	{
+		UnlockQuest(CurrentQuest->QuestData->QuestToUnlock);
+	}
+	if (CurrentQuest->QuestData->NextQuestID != NAME_None)
+	{
+		GoToNextQuest(CurrentQuest->QuestData->NextQuestID);
 	}
 }
 
@@ -64,4 +90,26 @@ void AQuestManager::BeginPlay()
 	CreateAndStartQuest(StartingQuest);
 }
 
+void AQuestManager::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
 
+	if (ActualInProgressQuest)
+	{
+		ActualInProgressQuest->UpdateQuest(DeltaTime);
+	}
+}
+
+void AQuestManager::UnlockQuest(FName QuestToUnlock)
+{
+	UCMEventManager* EM = USingletonFunctionLibrary::GetEventManager(GetWorld());
+	if (EM)
+	{
+		EM->OnQuestUnlockEvent(QuestToUnlock);
+	}
+}
+
+void AQuestManager::GoToNextQuest(FName NextQuestID)
+{
+	CreateAndStartQuest(NextQuestID);
+}

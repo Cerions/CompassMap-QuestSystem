@@ -8,6 +8,7 @@
 #include "StepBase.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FStepCompleted);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FStepProgress);
 
 class AQuestManager;
 class UQuestBase;
@@ -44,6 +45,9 @@ public:
 	UPROPERTY()
 	FStepCompleted StepCompleted;
 
+	UPROPERTY()
+	FStepProgress StepProgress;
+
 	UFUNCTION()
 	virtual void InitStep();
 
@@ -55,6 +59,9 @@ public:
 
 	UFUNCTION()
 	virtual void CheckIsStepComplete();
+
+	UFUNCTION()
+	virtual TArray<FStepTargetInfo> GetStepTargetsData();
 
 	UFUNCTION()
 	virtual void EndStep();
@@ -93,4 +100,7 @@ protected:
 
 	UFUNCTION()
 	void RemoveQuestTarget(UObjectStateComponent* ObjectStateComponent);
+
+	UFUNCTION()
+	void RemoveQuestTargetByType(TSubclassOf<AActor> TargetType);
 };

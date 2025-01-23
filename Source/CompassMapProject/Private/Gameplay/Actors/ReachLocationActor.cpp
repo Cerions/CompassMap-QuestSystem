@@ -7,8 +7,6 @@
 #include "Managers/CMEventManager.h"
 #include "Gameplay/Components/ObjectStateComponent.h"
 
-#pragma optimize("", off)
-
 AReachLocationActor::AReachLocationActor()
 {
 	PrimaryActorTick.bCanEverTick = false;

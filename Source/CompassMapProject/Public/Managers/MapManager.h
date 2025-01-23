@@ -47,8 +47,8 @@ public:
 	UFUNCTION()
 	void RemoveFromDiscoveredPOIs(FName RemovedPOI) { DiscoveredPOIs.Remove(RemovedPOI); }
 
-	UFUNCTION()
-	FVector GetPOILocation(FName POIID);
+	/*UFUNCTION()
+	FVector GetPOILocation(FName POIID);*/
 
 	UFUNCTION()
 	void UpdateDynamicMarkers(TArray<UObjectStateComponent*> Markers);

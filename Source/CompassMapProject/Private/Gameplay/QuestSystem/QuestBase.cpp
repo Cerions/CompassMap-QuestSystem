@@ -8,8 +8,6 @@
 #include "Managers/QuestManager.h"
 #include "Gameplay/QuestSystem/StepBase.h"
 
-#pragma optimize("", off)
-
 void UQuestBase::InitQuest()
 {
 	CurrentStepIndex = 0;

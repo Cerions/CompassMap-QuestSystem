@@ -82,8 +82,8 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	float GetScreenLocation(FVector TargetLocation);
 
-	UFUNCTION()
-	void OnPOIsActivated();
+	/*UFUNCTION()
+	void OnPOIsActivated();*/
 
 	UFUNCTION()
 	void UpdatePOIs(const FPOIConfigRow& POI, bool NewDiscovery);

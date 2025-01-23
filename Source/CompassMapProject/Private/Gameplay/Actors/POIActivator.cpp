@@ -11,8 +11,6 @@
 #include "Gameplay/Actors/ReachLocationActor.h"
 #include "Gameplay/Components/ObjectStateComponent.h"
 
-#pragma optimize("", off)
-
 APOIActivator::APOIActivator()
 {
 	PrimaryActorTick.bCanEverTick = true;
@@ -54,7 +52,7 @@ void APOIActivator::OnPOIActivatorOverlap(UPrimitiveComponent* OverlappedComp, A
 		UCMEventManager* EventManager = USingletonFunctionLibrary::GetEventManager(this);
 		if (EventManager)
 		{
-			EventManager->OnPOIsActivatedEvent();
+			//EventManager->OnPOIsActivatedEvent();
 		}
 	}
 }

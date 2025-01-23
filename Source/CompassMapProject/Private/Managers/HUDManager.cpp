@@ -3,7 +3,7 @@
 
 #include "Managers/HUDManager.h"
 #include "UI/BaseHUD.h"
-#include "CompassMapProject/CompassMapProjectCharacter.h"
+#include "Gameplay/Characters/CMPlayer.h"
 #include "FunctionLibraries/GameplayFunctionLibrary.h"
 #include "FunctionLibraries/SingletonFunctionLibrary.h"
 #include "Managers/CMEventManager.h"
@@ -29,7 +29,7 @@ void AHUDManager::CreateHUD()
 	}
 }
 
-void AHUDManager::SetPlayerCharacter(ACompassMapProjectCharacter* PC)
+void AHUDManager::SetPlayerCharacter(ACMPlayer* PC)
 {
 	PlayerCharacter = PC;
 

@@ -6,7 +6,7 @@
 #include "GameFramework/PlayerController.h"
 #include "BasePlayerController.generated.h"
 
-class ACompassMapProjectCharacter;
+class ACMPlayer;
 
 /**
  * 
@@ -19,10 +19,10 @@ class COMPASSMAPPROJECT_API ABasePlayerController : public APlayerController
 public:
 
 	UPROPERTY(EditDefaultsOnly)
-	TSubclassOf<ACompassMapProjectCharacter> PlayerCharacterClass;
+	TSubclassOf<ACMPlayer> PlayerCharacterClass;
 
 	UPROPERTY()
-	ACompassMapProjectCharacter* CharRef {};
+	ACMPlayer* CharRef {};
 
 private:
 

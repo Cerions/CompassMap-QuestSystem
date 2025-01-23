@@ -34,7 +34,7 @@ void UCompassMap::NativeConstruct()
 
 	if (EventManager)
 	{
-		EventManager->OnPOIsActivated.AddUniqueDynamic(this, &UCompassMap::OnPOIsActivated);
+		//EventManager->OnPOIsActivated.AddUniqueDynamic(this, &UCompassMap::OnPOIsActivated);
 		/*EventManager->OnPOIEnter.AddDynamic(this, &UCompassMap::UpdatePOIs);*/
 		EventManager->OnMarkerNotify.AddDynamic(this, &UCompassMap::UpdateMarkers);
 		/*EventManager->OnQuestAreaEnter.AddUniqueDynamic(this, &UCompassMap::OnQuestAreaEnter);
@@ -60,7 +60,7 @@ void UCompassMap::NativeDestruct()
 
 	if (EventManager)
 	{
-		EventManager->OnPOIsActivated.RemoveDynamic(this, &UCompassMap::OnPOIsActivated);
+		//EventManager->OnPOIsActivated.RemoveDynamic(this, &UCompassMap::OnPOIsActivated);
 		/*EventManager->OnPOIEnter.RemoveDynamic(this, &UCompassMap::UpdatePOIs);*/
 		EventManager->OnMarkerNotify.RemoveDynamic(this, &UCompassMap::UpdateMarkers);
 		/*EventManager->OnQuestAreaEnter.RemoveDynamic(this, &UCompassMap::OnQuestAreaEnter);
@@ -182,19 +182,19 @@ float UCompassMap::GetScreenLocation(FVector TargetLocation)
 	return 0.f;
 }
 
-void UCompassMap::OnPOIsActivated()
-{
-	MapManager = UGameplayFunctionLibrary::GetMapManagerActor(GetWorld());
-	if (MapManager)
-	{
-		TArray<FPOIConfigRow> POIs{};
-		MapManager->GetAllPOI(POIs);
-		for (FPOIConfigRow POI : POIs)
-		{
-			CreateMarker(POI);
-		}
-	}
-}
+//void UCompassMap::OnPOIsActivated()
+//{
+//	MapManager = UGameplayFunctionLibrary::GetMapManagerActor(GetWorld());
+//	if (MapManager)
+//	{
+//		TArray<FPOIConfigRow> POIs{};
+//		MapManager->GetAllPOI(POIs);
+//		for (FPOIConfigRow POI : POIs)
+//		{
+//			CreateMarker(POI);
+//		}
+//	}
+//}
 
 void UCompassMap::UpdatePOIs(const FPOIConfigRow& POI, bool NewDiscovery)
 {
@@ -232,7 +232,7 @@ void UCompassMap::CreateMarker(const FPOIConfigRow& Row)
 				MapManager = UGameplayFunctionLibrary::GetMapManagerActor(GetWorld());
 				if (MapManager)
 				{
-					CompassIconRef->SetupWidget(OwnerWidget, Row, MapManager->GetPOILocation(Row.Id));
+					CompassIconRef->SetupWidget(OwnerWidget, Row/*, MapManager->GetPOILocation(Row.Id)*/);
 					HiddenPOI.Contains(CompassIconRef->MarkerData.Id) ? CompassIconRef->SetRenderOpacity(0.f) : CompassIconRef->SetRenderOpacity(1.f);
 					CompassIcons.Add(CompassIconRef);
 					UPanelSlot* PanelSlot = MarkerContainer->AddChild(CompassIconRef);
