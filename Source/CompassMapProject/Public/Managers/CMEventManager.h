@@ -19,6 +19,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnObjectStateUnloaded, UObjectState
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnBeginQuestTarget, bool, Show, UObjectStateComponent*, ObjectStateRef);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnMarkerNotify, const FPOIConfigRow&, Marker, bool, Add);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnNotifyQuestStart, FName, QuestID, int32, CurrentStepIndex, ENotifyType, NotifyType);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnNotifyQuestAddedToList);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnEndStep, const FName&, QuestID, const int32, CurrentStepIndex);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnEnemyDeath, APawn*, Enemy);
 
@@ -62,6 +63,9 @@ public:
 
 	void OnNotifyQuestStartEvent(FName QuestID, int32 CurrentStepIndex, ENotifyType NotifyType);
 	FOnNotifyQuestStart OnNotifyQuestStart;
+
+	void OnNotifyQuestAddedToListEvent();
+	FOnNotifyQuestAddedToList OnNotifyQuestAddedToList;
 
 	void OnEndStepEvent(const FName& QuestID, const int32 CurrentStepIndex);
 	FOnEndStep OnEndStep;

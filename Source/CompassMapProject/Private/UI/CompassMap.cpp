@@ -182,20 +182,6 @@ float UCompassMap::GetScreenLocation(FVector TargetLocation)
 	return 0.f;
 }
 
-//void UCompassMap::OnPOIsActivated()
-//{
-//	MapManager = UGameplayFunctionLibrary::GetMapManagerActor(GetWorld());
-//	if (MapManager)
-//	{
-//		TArray<FPOIConfigRow> POIs{};
-//		MapManager->GetAllPOI(POIs);
-//		for (FPOIConfigRow POI : POIs)
-//		{
-//			CreateMarker(POI);
-//		}
-//	}
-//}
-
 void UCompassMap::UpdatePOIs(const FPOIConfigRow& POI, bool NewDiscovery)
 {
 	if (POI.IconInfo && POI.IconInfo->MarkerType != EMarkerType::OnlyMap)

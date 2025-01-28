@@ -17,7 +17,7 @@ class COMPASSMAPPROJECT_API UGameplayConstants : public UDataAsset
 public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UI")
-	FVector2D MinMaxCompassIconArrowDistanceZ = FVector2D(-30.f, 30.f);
+	FVector2D MinMaxCompassIconArrowDistanceZ = FVector2D(-500.f, 500.f);
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Design")
 	TSoftObjectPtr<UDataTable> POITable = nullptr;

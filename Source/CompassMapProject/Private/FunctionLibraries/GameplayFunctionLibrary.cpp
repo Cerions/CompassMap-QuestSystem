@@ -33,6 +33,17 @@ ACMPlayer* UGameplayFunctionLibrary::GetPlayerCharacter(UObject* WorldContext)
 	return nullptr;
 }
 
+ABasePlayerController* UGameplayFunctionLibrary::GetPlayerController(UObject* WorldContext)
+{
+	AGameplayGameMode* GameplayGameMode = Cast<AGameplayGameMode>(UGameplayStatics::GetGameMode(WorldContext));
+	if (GameplayGameMode && GameplayGameMode->PlayerRef)
+	{
+		return GameplayGameMode->PlayerRef;
+	}
+
+	return nullptr;
+}
+
 AMapManager* UGameplayFunctionLibrary::GetMapManagerActor(UObject* WorldContext)
 {
 	AMapManager* MapManagerActor = {};
@@ -43,6 +54,16 @@ AMapManager* UGameplayFunctionLibrary::GetMapManagerActor(UObject* WorldContext)
 	}
 
 	return MapManagerActor;
+}
+
+AQuestManager* UGameplayFunctionLibrary::GetQuestManager(UObject* WorldContext)
+{
+	AGameplayGameMode* GM = Cast<AGameplayGameMode>(UGameplayStatics::GetGameMode(WorldContext));
+	if (GM)
+	{
+		return GM->QuestManager;
+	}
+	return nullptr;
 }
 
 void UGameplayFunctionLibrary::AddPOI(FName NewPOI, FVector POILocation, UObject* WorldContext)

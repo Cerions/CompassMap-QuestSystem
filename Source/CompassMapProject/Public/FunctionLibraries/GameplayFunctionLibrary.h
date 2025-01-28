@@ -9,6 +9,7 @@
 class UGameplayConstants;
 class AMapManager;
 class ACMPlayer;
+class AQuestManager;
 
 /**
  * 
@@ -27,7 +28,13 @@ public:
 	static ACMPlayer* GetPlayerCharacter(UObject* WorldContext);
 
 	UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"))
+	static ABasePlayerController* GetPlayerController(UObject* WorldContext);
+
+	UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"))
 	static AMapManager* GetMapManagerActor(UObject* WorldContext);
+
+	UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"))
+	static AQuestManager* GetQuestManager(UObject* WorldContext);
 
 	UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"))
 	static void AddPOI(FName NewPOI, FVector POILocation, UObject* WorldContext);

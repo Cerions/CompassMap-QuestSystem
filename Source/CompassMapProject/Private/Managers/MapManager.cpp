@@ -73,16 +73,6 @@ void AMapManager::GetAllPOI(TArray<FPOIConfigRow>& POIConfig)
 	}
 }
 
-//FVector AMapManager::GetPOILocation(FName POIID)
-//{
-//	if (DiscoveredPOIs.Contains(POIID))
-//	{
-//		return DiscoveredPOIs[POIID];
-//	}
-//
-//	return FVector();
-//}
-
 void AMapManager::UpdateDynamicMarkers(TArray<UObjectStateComponent*> Markers)
 {
 	for (int32 i = 0; i < Markers.Num(); i++)

@@ -35,9 +35,6 @@ public:
 	UFUNCTION()
 	void GetAllPOI(TArray<FPOIConfigRow>& POIConfig);
 
-	/*UFUNCTION()
-	TArray<FName> GetDiscoveredPOIs() { return DiscoveredPOIs; }*/
-
 	UFUNCTION()
 	TArray<FMarkerPosition> GetDynamicMarkers() { return DynamicMarkers; }
 
@@ -46,9 +43,6 @@ public:
 
 	UFUNCTION()
 	void RemoveFromDiscoveredPOIs(FName RemovedPOI) { DiscoveredPOIs.Remove(RemovedPOI); }
-
-	/*UFUNCTION()
-	FVector GetPOILocation(FName POIID);*/
 
 	UFUNCTION()
 	void UpdateDynamicMarkers(TArray<UObjectStateComponent*> Markers);

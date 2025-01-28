@@ -4,11 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Structures/GameplayStructures.h"
 #include "HUDManager.generated.h"
 
 class UBaseHUD;
 class AGameplayGameMode;
 class ACMPlayer;
+class UQuestNotifyElement;
+class AQuestManager;
 
 UCLASS()
 class COMPASSMAPPROJECT_API AHUDManager : public AActor
@@ -17,6 +20,9 @@ class COMPASSMAPPROJECT_API AHUDManager : public AActor
 	
 public:	
 	AHUDManager();
+
+	UPROPERTY()
+	TArray<UQuestNotifyElement*> NotifyElements;
 
 	UFUNCTION()
 	void CreateHUD();
@@ -40,5 +46,19 @@ protected:
 
 	UPROPERTY()
 	ACMPlayer* PlayerCharacter {};
+
+	UPROPERTY()
+	AQuestManager* QuestManager {};
+
+	UPROPERTY(EditAnywhere, Category = "QuestNotify")
+	TMap<ENotifyType, TSubclassOf<UQuestNotifyElement>> NotifyClassElements;
+
+	UFUNCTION()
+	void AddNotifyQuestElement(FName QuestID, int32 CurrentStepIndex, ENotifyType NotifyType);
+
+private:
+
+	UFUNCTION()
+	void OnQuestStepEnd(const FName& QuestID, const int32 CurrentStep);
 
 };

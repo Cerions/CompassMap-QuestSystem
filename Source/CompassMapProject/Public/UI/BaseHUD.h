@@ -7,6 +7,7 @@
 #include "BaseHUD.generated.h"
 
 class UCompassMap;
+class UQuestNotifyContainer;
 
 /**
  * 
@@ -19,10 +20,13 @@ class COMPASSMAPPROJECT_API UBaseHUD : public UUserWidget
 protected:
 
 	UPROPERTY()
-	AActor* WidgetOwner = nullptr;
+	AActor* WidgetOwner {};
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
-	UCompassMap* CompassMap;
+	UCompassMap* CompassMap {};
+
+	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
+	UQuestNotifyContainer* QuestNotifyContainer {};
 
 	UFUNCTION()
 	virtual void InitWidgets();

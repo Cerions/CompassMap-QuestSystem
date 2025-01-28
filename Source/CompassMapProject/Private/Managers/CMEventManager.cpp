@@ -56,6 +56,11 @@ void UCMEventManager::OnNotifyQuestStartEvent(FName QuestID, int32 CurrentStepIn
 	OnNotifyQuestStart.Broadcast(QuestID, CurrentStepIndex, NotifyType);
 }
 
+void UCMEventManager::OnNotifyQuestAddedToListEvent()
+{
+	OnNotifyQuestAddedToList.Broadcast();
+}
+
 void UCMEventManager::OnEndStepEvent(const FName& QuestID, const int32 CurrentStepIndex)
 {
 	OnEndStep.Broadcast(QuestID, CurrentStepIndex);
